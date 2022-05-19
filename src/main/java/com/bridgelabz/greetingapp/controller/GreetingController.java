@@ -2,6 +2,7 @@ package com.bridgelabz.greetingapp.controller;
 
 import com.bridgelabz.greetingapp.entity.Greeting;
 import com.bridgelabz.greetingapp.entity.User;
+import com.bridgelabz.greetingapp.service.IGreetingService;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.RequestMapping;
@@ -14,20 +15,21 @@ import java.util.concurrent.atomic.AtomicLong;
 @RequestMapping("/greeting")
 public class GreetingController {
 
-    //@Autowired
-    //private iGreetingService iGreetingService;
+    // We use Autowired annotation to inject the GreetingService service via the interface
+    @Autowired
+    private IGreetingService iGreetingService;
 
-    private static String  template="Hello,%s!";
-    private final  AtomicLong counter=new AtomicLong();
-
-
+    /**
+     * Method using GET to pass the name to the User and then to the Service layer.
+     * @param name - Will pass the name
+     * @return - Will return the counter and user name
+     * URL : http://localhost:8081/greeting/home?name=Tom
+     */
     @GetMapping("/home")
     public Greeting greeting(@RequestParam(value = "name", defaultValue = "World") String name) {
-//        User user = new User();
-//        user.setFirstName(name);
-//        return iGreetingService addGreeting(user);
-        return new Greeting(counter.incrementAndGet(),String.format(template,name));
-
+        User user = new User();
+        user.setFirstName(name);
+        return iGreetingService.addGreeting(user);
     }
 
 }
