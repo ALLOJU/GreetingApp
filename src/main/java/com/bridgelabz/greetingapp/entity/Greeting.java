@@ -15,7 +15,7 @@ import javax.persistence.Table;
 @NoArgsConstructor
 @Builder
 @Data
-@Table(name="greeting")
+@Table(name="greetings")
 public class Greeting {
     @Id
     @Column(name = "id", nullable = false)

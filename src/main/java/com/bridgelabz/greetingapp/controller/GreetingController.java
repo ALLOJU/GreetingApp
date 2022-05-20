@@ -40,5 +40,9 @@ public class GreetingController {
         user.setLastName(lastName);
         return iGreetingService.addGreeting(user);
     }
+    @GetMapping("/getGreetingByID")
+    public Greeting getGreetingByID(@RequestParam(name = "id") long id) {
+        return iGreetingService.getGreetingByID(id);
+    }
 
 }
