@@ -18,7 +18,6 @@ import javax.persistence.Table;
 @Table(name="greetings")
 public class Greeting {
     @Id
-    @Column(name = "id", nullable = false)
     private long id;
     private String message;
 }

@@ -15,4 +15,6 @@ public interface IGreetingService {
     Greeting updateGreeting(Greeting greeting);
 
     void delete(long id);
+
+    String postGreetingMessage(User user);
 }

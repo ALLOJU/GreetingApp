@@ -4,6 +4,8 @@ import com.bridgelabz.greetingapp.entity.Greeting;
 import com.bridgelabz.greetingapp.entity.User;
 import com.bridgelabz.greetingapp.service.IGreetingService;
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.http.HttpStatus;
+import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.*;
 
 import java.util.List;
@@ -29,6 +31,11 @@ public class GreetingController {
         user.setFirstName(name);
         return iGreetingService.addGreeting(user);
     }
+    @PostMapping("/postGreeting")
+    public ResponseEntity<String> postGreeting(@RequestBody User user) {
+        return new ResponseEntity<String>(iGreetingService.postGreetingMessage(user), HttpStatus.OK);
+    }
+
 
     @GetMapping("/fullname")
     public Greeting greeting(@RequestParam(value = "firstName", defaultValue = "first") String firstName,
@@ -49,6 +56,7 @@ public class GreetingController {
     }
     @PutMapping("/edit")
     public Greeting updateGreeting(@RequestBody Greeting greeting) {
+
         return iGreetingService.updateGreeting(greeting);
     }
     @DeleteMapping("/delete")

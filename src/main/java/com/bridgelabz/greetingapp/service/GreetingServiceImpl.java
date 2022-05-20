@@ -48,5 +48,10 @@ public class GreetingServiceImpl implements IGreetingService {
         greetingRepository.deleteById(id);
     }
 
+    @Override
+    public String postGreetingMessage(User user) {
+        return "Hello " + user.getFirstName() + " " + user.getLastName();
+    }
+
 
 }
