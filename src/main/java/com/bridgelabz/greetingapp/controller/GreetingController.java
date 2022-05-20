@@ -9,6 +9,7 @@ import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestParam;
 import org.springframework.web.bind.annotation.RestController;
 
+import java.util.List;
 import java.util.concurrent.atomic.AtomicLong;
 
 @RestController
@@ -44,5 +45,11 @@ public class GreetingController {
     public Greeting getGreetingByID(@RequestParam(name = "id") long id) {
         return iGreetingService.getGreetingByID(id);
     }
+    @GetMapping("/getall")
+    public List<Greeting> getAll()
+    {
+        return iGreetingService.getAll();
+    }
+    
 
 }
