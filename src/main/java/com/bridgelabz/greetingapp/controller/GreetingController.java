@@ -32,4 +32,13 @@ public class GreetingController {
         return iGreetingService.addGreeting(user);
     }
 
+    @GetMapping("/fullname")
+    public Greeting greeting(@RequestParam(value = "firstName", defaultValue = "first") String firstName,
+                             @RequestParam(value = "lastName", defaultValue = "last") String lastName ) {
+        User user = new User();
+        user.setFirstName(firstName);
+        user.setLastName(lastName);
+        return iGreetingService.addGreeting(user);
+    }
+
 }
